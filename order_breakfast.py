@@ -10,21 +10,20 @@ def valid_input(prompt, option1, option2):
     while True:
         response = input(prompt).lower()
         if option1 in response:
-            return response
+            break
         elif option2 in response:
-            return response
+            break
         else:
             print_pause("Sorry, I don't understand.")
+    return response
 
+def intro():
+    print_pause("Hello! I am Bob, the Breakfast Bot.")
+    print_pause("Today we have two breakfasts available.")
+    print_pause("The first is waffles with strawberries and whipped cream.")
+    print_pause("The second is sweet potato pancakes with butter and syrup.")
 
-print_pause("Hello! I am Bob, the Breakfast Bot.")
-print_pause("Today we have two breakfasts available.")
-print_pause("The first is waffles with strawberries and whipped cream.")
-print_pause("The second is sweet potato pancakes with butter and syrup.")
-
-
-while True:
-
+def get_order():
     response = valid_input("Please place your order. "
                            "Would you like waffles or pancakes?\n",
                            "waffles", "pancakes")
@@ -33,13 +32,24 @@ while True:
     elif "pancakes" in response:
         print_pause("Pancakes it is!")
 
-    print_pause("Your order will be ready shortly.")
+intro()
+while True:
 
+    get_order()
+    print_pause("Your order will be ready shortly.")
     order_again = valid_input("Would you like to place another order? "
                               "Please say 'yes' or 'no'.\n",
                               "yes", "no")
     if "no" in order_again:
         print_pause("OK, goodbye!")
+        break
     elif "yes" in order_again:
         print_pause("Very good, I'm happy to take another order.")
 
+def order_breakfast():
+    intro()
+    get_order()
+    order_again()
+
+
+order_breakfast()

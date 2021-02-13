@@ -1,2 +1,6 @@
-nam = input('Please enter your name ')
-print("Hello,", name, "!")
+def get_foo():
+    response = input('Say "foo"!\n')
+    if response != 'foo':
+        get_foo()
+
+get_foo()

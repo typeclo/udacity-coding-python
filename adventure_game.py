@@ -7,40 +7,40 @@ dangers = ["bear", "tiger", "snake", "fox",
 
 chap = {
     "home": ("Should I 'bring my bag' or 'leave it'? ", "bring my bag", "leave it"),
-    "no_bag_fork": ("Yeah, I don't need a bag anyway..." + \
-                    " Which road should I take, the 'adventurous'" +\
+    "no_bag_fork": ("Yeah, I don't need a bag anyway..." 
+                    " Which road should I take, the 'adventurous'"
                     " road or the 'easy' road?", "adventurous", "easy"),
-    "fork_road": ("Better safe than sorry. Which road should I take,"+\
+    "fork_road": ("Better safe than sorry. Which road should I take,"
                   " the 'adventurous' road or the 'easy' road?", "easy", "adventurous"),
     "dangerous_road": ("Oh no there's a " + random.choice(dangers) + ", I won't make it today", None, None),
-    "no_bag_bushes": ("I feel so adventurous! Wait..."+\
-                      " what's that? I hear a sound in the bushes, "+\
+    "no_bag_bushes": ("I feel so adventurous! Wait..."
+                      " what's that? I hear a sound in the bushes, "
                       "I wonder if I should 'check' or 'keep walking'?", "keep walking", "check"),
-    "bushes": ("Grandpa always said this was the best way to go."+\
-               " Wait... what's that? I hear a sound in the bushes,"+\
+    "bushes": ("Grandpa always said this was the best way to go."
+               " Wait... what's that? I hear a sound in the bushes,"
                " I wonder if I should 'check' or 'keep walking'?", "check", "keep walking"),
     "danger": ("Oh no, it's a " + random.choice(dangers) + "! "+
                "I better hurry back home! I'll try again tomorrow.", None, None),
-    "no_bag_cave_ent": ("Looks like I found a big cave!"+\
-                        " Too bad I didn't bring my flashlight..."+\
+    "no_bag_cave_ent": ("Looks like I found a big cave!"
+                        " Too bad I didn't bring my flashlight..."
                         " I left it in my bag! I guess I'll just go home...", None, None),
-    "cave_ent": ("Looks like I found a big cave!"+\
-                 " Good thing I have a flashlight in my bag."+\
+    "cave_ent": ("Looks like I found a big cave!"
+                 " Good thing I have a flashlight in my bag."
                  " Should I 'go in' or 'explore outside'?", "go in", "explore outside"),
-    "cave": ("This cave is so scary... Should I 'explore'"+\
+    "cave": ("This cave is so scary... Should I 'explore'"
              " or 'go back outside'?", 'explore', "go back outside"),
-    "deep_cave": ("Wow, this cave is beautiful!"+\
-                  " Too bad I couldn't find that treasure. "+\
+    "deep_cave": ("Wow, this cave is beautiful!"
+                  " Too bad I couldn't find that treasure. "
                   "It's getting late, I'll just head back home.", None, None),
-    "outside_cave": ("Wow, I'm exhausted."+\
-                     " That lonely tree by the cave entrance looks like a good place to rest,"+\
+    "outside_cave": ("Wow, I'm exhausted."
+                     " That lonely tree by the cave entrance looks like a good place to rest,"
                      " should I take a 'rest' or 'keep exploring'?", "rest", "keep exploring"),
-    "lonely_tree": ("I guess I'll just sit under this tree to rest... " +\
-                    "Wait what's that sign on the ground. Should I 'dig' " +\
+    "lonely_tree": ("I guess I'll just sit under this tree to rest... " 
+                    "Wait what's that sign on the ground. Should I 'dig' " 
                     "or 'explore some more'?", "explore some more", "dig"),
-    "getting_dark": ("Exploring sure is fun, but it's getting late."+\
+    "getting_dark": ("Exploring sure is fun, but it's getting late."
                      " I'll have to look for that treasure again tomorrow.", None, None),
-    "treasure_pos": ("I found the treasure!", None, None)
+    "treasure_pos": ("I can't believe it. I found the treasure!", None, None)
 }
 
 is_treasure_found = False
@@ -104,7 +104,7 @@ def start_game():
 
     # End scene: Player won.
     if is_treasure_found:
-        print_dialog('I finally found the treasure, Grandpa will be so proud of me!')
+        print_dialog('Grandpa will be so proud of me!')
     # End scene: Player lost.
     else:
         print_dialog("I'll get some rest, maybe I can try again in the morning.")
