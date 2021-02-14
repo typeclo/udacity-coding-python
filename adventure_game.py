@@ -8,7 +8,7 @@ dangers = ["bear", "tiger", "snake", "fox",
 chap = {
     "home": ("Should I 'bring my bag' or 'leave it'? ",
              "bring my bag", "leave it"),
-    "no_bag_fork": ("Yeah, I don't need a bag anyway..."
+    "no_bag_fork": ("Yeah, I don't need a bag anyway."
                     " Which road should I take, the 'adventurous'"
                     " road or the 'easy' road?", "adventurous", "easy"),
     "fork_road": ("Better safe than sorry. Which road should I take,"
@@ -16,26 +16,26 @@ chap = {
                   "easy", "adventurous"),
     "dangerous_road": ("Oh no there's a " + random.choice(dangers) +
                        ", I won't make it today", None, None),
-    "no_bag_bushes": ("I feel so adventurous! Wait..."
+    "no_bag_bushes": ("I feel so adventurous! Wait."
                       " what's that? I hear a sound in the bushes, "
                       "I wonder if I should 'check' or 'keep walking'?",
                       "keep walking", "check"),
     "bushes": ("Grandpa always said this was the best way to go."
-               " Wait... what's that? I hear a sound in the bushes,"
+               " What's that? I hear a sound in the bushes,"
                " I wonder if I should 'check' or 'keep walking'?",
                "check", "keep walking"),
     "danger": ("Oh no, it's a " + random.choice(dangers) + "! " +
                "I better hurry back home! I'll try again tomorrow.",
                None, None),
     "no_bag_cave_ent": ("Looks like I found a big cave!"
-                        " Too bad I didn't bring my flashlight..."
-                        " I left it in my bag! I guess I'll just go home...",
+                        " Too bad I didn't bring my flashlight."
+                        " I left it in my bag! I guess I'll just go home.",
                         None, None),
     "cave_ent": ("Looks like I found a big cave!"
                  " Good thing I have a flashlight in my bag."
                  " Should I 'go in' or 'explore outside'?", "go in",
                  "explore outside"),
-    "cave": ("This cave is so scary... Should I 'explore'"
+    "cave": ("This cave is so scary. Should I 'explore'"
              " or 'go back outside'?", 'explore', "go back outside"),
     "deep_cave": ("Wow, this cave is beautiful!"
                   " Too bad I couldn't find that treasure. "
@@ -45,10 +45,10 @@ chap = {
                      " looks like a good place to rest,"
                      " should I take a 'rest' or 'keep exploring'?",
                      "rest", "keep exploring"),
-    "lonely_tree": ("I guess I'll just sit under this tree to rest... "
+    "lonely_tree": ("I guess I'll just sit under this tree to rest. "
                     "Wait what's that sign on the ground. Should I 'dig' "
                     "or 'explore some more'?", "explore some more", "dig"),
-    "getting_dark": ("Oh no, now it's dark..."
+    "getting_dark": ("Oh no, now it's dark."
                      " I'll have to look for that treasure again tomorrow.",
                      None, None),
     "treasure_pos": ("I can't believe it. I found the treasure!", None, None)
@@ -79,18 +79,21 @@ chap_n = [chap["home"],
 
 # Grid of positions, each position has a text and two options.
 # Options can be text or None.
-map = [[chap_n[0],  chap_n[1],  chap_n[2],  chap_n[3]],
-       [chap_n[4],  chap_n[5],  chap_n[6],  chap_n[7]],
-       [chap_n[8],  chap_n[9],  chap_n[10], chap_n[11]],
-       [chap_n[12], chap_n[13], chap_n[14], chap_n[15]]]
+map = [[chap_n[0],  chap_n[1],  chap_n[2],  chap_n[3], chap_n[4]],
+       [chap_n[5],  chap_n[6],  chap_n[7], chap_n[8],  chap_n[9]],
+       [chap_n[10], chap_n[11], chap_n[12], chap_n[13], chap_n[14]],
+       [chap_n[15], chap_n[16], chap_n[17], chap_n[18], chap_n[19]]]
 current_position = (0, 0)
 treasure_position = (3, 3)
 
 
 # Prints, then waits 2 seconds.
 def print_dialog(dialog):
-    print(dialog)
-    time.sleep(2)
+    split_dialog = dialog.split(". ")
+    for sentence in split_dialog:
+        time.sleep(1.5)
+        print(sentence + ("." if sentence != split_dialog[-1] else ""))
+        time.sleep(1.5)
 
 
 # Returns state tuple at current_position.
@@ -104,13 +107,17 @@ def get_current_state_from_position():
 # returns the next position based on user's input.
 def get_next_position(current_state):
     while True:
-        action = input(current_state[0] + "\n")
+        print_dialog(current_state[0])
+        action = input("(type either '" + current_state[1] +
+                       "' or '" + current_state[2] + "')\n\n")
         if action == current_state[1]:
+            print("\n")
             return (current_position[0], current_position[1] + 1)
         elif action == current_state[2]:
+            print("\n")
             return (current_position[0] + 1, current_position[1])
         else:
-            print_dialog("Huh. What was I doing again... Ah right..")
+            print_dialog("Huh. What was I doing again. Ah right.")
 
 
 # Main game
@@ -119,9 +126,9 @@ def start_game():
     global current_position
 
     # Opening scene
-    print_dialog(
-        "My grandpa told me that he hid some treasures in the forest nearby.")
-    print_dialog("Today, I'm going to look for that treasure.")
+    print_dialog("My grandpa told me that he hid some " +
+                 "treasures in the forest nearby. " +
+                 "Today, I'm going to look for that treasure.")
 
     # loops over map using get_next_position, until is_treasure_found is True.
     while not is_treasure_found:
@@ -149,18 +156,28 @@ def start_game():
         print_dialog("YOU LOSE, GAME OVER!")
 
 
+print("\n" +
+      "             *###################################*\n" +
+      "             |#              <=~=>              #|\n" +
+      "             |#   THE GREAT FOREST ADVENTURE:   #|\n" +
+      "             |#          SEARCHING FOR          #|\n" +
+      "             |#   *~| THE HIDDEN TREASURE |~*   #|\n" +
+      "             |#            <=~~@~~=>            #|\n" +
+      "             *###################################*\n")
+
+# Starts the initial game.
 start_game()
 
-while not is_treasure_found:
-    should_start_over = input(
-        "It's the next day, should I try " +
-        "looking for treasure again? 'yes' or 'no'\n")
-    if should_start_over == "yes":
+while True:
+    play_again = input("Would you like to play again? (type 'yes' or 'no')\n")
+    if play_again == "yes":
+        is_treasure_found = False
         current_position = (0, 0)
+        print("\n\n")
         start_game()
         continue
-    elif should_start_over == "no":
-        print_dialog("Nah, not today!\n")
+    elif play_again == "no":
+        print("Okay. See you next time!")
         break
     else:
-        print_dialog("Huh. What was I doing again... Ah right..")
+        print("Sorry, I couldn't understand?")
